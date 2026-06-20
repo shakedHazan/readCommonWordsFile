@@ -4,7 +4,7 @@ def main():
         count = int(input("Enter the number of words you want to see: "))
         for i in wordsSorted:
             if(count != 0):
-                print(i, wordsSorted[i])
+                print("The word is --> \'" + i + "\' the amount of times it has appeard -->", wordsSorted[i])
                 count = count - 1
     except TypeError:
         print("error you need to put a number only")
@@ -14,7 +14,16 @@ def readFile():
     wordsCount = {}
     added = False
     try:
-        with open("words.txt", "r") as file:
+        successful = False
+        while(not(successful)):
+            try:
+                filename = input("Enter the file name here --> ")
+                if(not(".txt" in filename)):
+                    filename += ".txt"
+                successful = True
+            except:
+                print("error in input try again")
+        with open(filename, "r") as file:
             content = file.read()
             for line in content.split():
                 added = False
